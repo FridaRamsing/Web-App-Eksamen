@@ -1,17 +1,23 @@
 import { Link } from "react-router";
-import welcomePageImage from "../../Images/Welcome page.svg";
+import welcomePageImage from "../../Images/Welcome page new.svg";
 
 export default function WelcomePage() {
   return (
     <main className="auth-page">
       <section className="auth-shell">
-        <img
-          className="welcome-image"
-          src={welcomePageImage}
-          alt="Welcome illustration for Fjera"
-        />
+        <div className="welcome-hero">
+          <img
+            className="welcome-image"
+            src={welcomePageImage}
+            alt="Welcome illustration for Fjera"
+          />
+        </div>
 
-        <div className="auth-content">
+        <div className="welcome-actions-section">
+          <h1 className="welcome-title">
+            <span> Welcome</span>
+            <span> to Fjera</span>
+          </h1>
           <div className="auth-actions">
             <Link to="/login" className="auth-button">
               Login
