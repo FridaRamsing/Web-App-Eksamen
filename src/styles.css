@@ -77,3 +77,44 @@ body {
     margin: 0 0 24px;
     text-align: center;
   }
+
+
+  /*WELCOME PAGE*/
+  /*Groups the main welcome-page actions and adds space between them. */
+  .auth-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  /*Shared button styling used for the main actions in the app. */
+  .auth-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 56px;
+    padding: 14px 20px;
+    background-color: var(--button);
+    color: #ffffff;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    font-size: 1.5rem;
+    font-weight: 600;
+
+  }
+
+  .auth-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+
+/*Styles the main illustration on the welcome page. */
+.welcome-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
