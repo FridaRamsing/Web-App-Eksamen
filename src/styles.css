@@ -62,11 +62,17 @@ body {
 
   .auth-shell {
     width: min(100%, 390px);
-    height: min(844px, calc(100vh - 32px));
+    height: 844px;
     background: var(--bg-cream);
     border-radius: 24px;
     box-shadow: var(--shadow);
     overflow: hidden;
+  }
+
+  @media (max-height: 876px) {
+    .auth-page {
+      align-items: flex-start;
+    }
   }
 
   .auth-content {
@@ -237,4 +243,351 @@ text-shadow: none; /*might add later if time*/
 .auth-small-text a{
   font-weight: 700;
   text-decoration: underline;
+}
+
+/* Tightens the sign-up form so it fits the phone frame like the login screen. */
+.signup-form-section {
+  padding-top: 20px;
+}
+
+.signup-form-section .login-title {
+  margin-bottom: 20px;
+}
+
+.signup-form-section .auth-form {
+  gap: 12px;
+}
+
+.signup-form-section .auth-input {
+  min-height: 48px;
+}
+
+.signup-form-section .auth-button {
+  min-height: 48px;
+  font-size: 1.4rem;
+}
+
+.signup-form-section .auth-divider {
+  margin: 18px 0 14px;
+}
+
+.signup-form-section .social-login-row {
+  margin-bottom: 16px;
+}
+
+/* Lays out the egg selection screen inside the shared phone frame. */
+.choose-bird-screen {
+  padding: 40px 32px 32px;
+  background: var(--bg-cream);
+}
+
+.choose-bird-title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.egg-choice-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "blue"
+    "pink"
+    "yellow";
+  align-items: center;
+  justify-items: center;
+  gap: 34px;
+  margin-top: 52px;
+}
+
+.egg-choice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96px;
+  height: 116px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.egg-choice img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.egg-choice-blue {
+  grid-area: blue;
+}
+
+.egg-choice-pink {
+  grid-area: pink;
+}
+
+.egg-choice-yellow {
+  grid-area: yellow;
+}
+
+/* Shows the chosen bird after the egg selection step. */
+.bird-reveal-screen {
+  padding: 68px 32px 32px;
+  background: var(--bg-cream);
+  text-align: center;
+}
+
+.bird-reveal-title {
+  margin: 0 0 48px;
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.bird-reveal-image {
+  display: block;
+  width: 230px;
+  max-width: 100%;
+  margin: 0 auto 28px;
+}
+
+.bird-sound {
+  margin: 0 0 44px;
+  font-size: 1.3rem;
+}
+
+.bird-name-label {
+  display: block;
+  margin-bottom: 24px;
+  font-size: 1.55rem;
+}
+
+.bird-name-input {
+  border-color: #4a8a31;
+  margin-bottom: 30px;
+}
+
+.bird-next-button {
+  margin-top: 0;
+}
+
+/* Shared layout for the screen where the user names themselves after choosing a bird. */
+.bird-name-screen {
+  position: relative;
+  padding: 72px 36px 32px;
+  background: var(--bg-cream);
+  text-align: center;
+}
+
+.bird-back-link {
+  position: absolute;
+  top: 64px;
+  left: 34px;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.bird-name-title {
+  margin: 72px 0 64px;
+  font-size: 2.7rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.bird-name-image {
+  display: block;
+  width: 210px;
+  max-width: 100%;
+  margin: 0 auto 32px;
+}
+
+.bird-name-sound {
+  margin: 0 0 54px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Layout for the struggle selection onboarding screen. */
+.struggles-screen {
+  position: relative;
+  padding: 128px 34px 32px;
+  background: var(--bg-cream);
+}
+
+.struggles-copy {
+  margin-bottom: 42px;
+  text-align: center;
+}
+
+.struggles-copy h1 {
+  margin: 0 0 14px;
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.struggles-copy p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.struggle-list {
+  display: grid;
+  gap: 16px;
+}
+
+.struggle-option {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  align-items: center;
+  width: 100%;
+  min-height: 72px;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 5px 7px 0 rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.struggle-option-selected {
+  background: var(--button);
+  color: #ffffff;
+  transform: translateY(2px);
+  box-shadow: 3px 5px 0 rgba(65, 86, 50, 0.25);
+}
+
+.struggle-option img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.struggle-option span {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.struggles-next-button {
+  margin-top: 28px;
+  background: #ffffff;
+  color: #8f8f8f;
+  box-shadow: 5px 7px 0 rgba(0, 0, 0, 0.18);
+}
+
+/* Slightly tighter spacing for the goal-count version of the choice screen. */
+.goal-count-screen {
+  padding-top: 126px;
+}
+
+.goal-count-copy {
+  margin-bottom: 42px;
+}
+
+.goal-count-list {
+  gap: 20px;
+}
+
+/* Compact version of the choice screen for selecting starter goals. */
+.goals-screen {
+  display: flex;
+  flex-direction: column;
+  padding: 0 34px 40px;
+  overflow: hidden;
+}
+
+.goals-scroll-area {
+  flex: 1;
+  min-height: 0;
+  margin: 0 -34px;
+  padding: 96px 34px 24px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.goals-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+.goals-copy {
+  margin-bottom: 34px;
+}
+
+.goals-copy h1 {
+  font-size: 1.45rem;
+}
+
+.goals-copy p {
+  max-width: 310px;
+  margin: 0 auto;
+}
+
+.goals-list {
+  gap: 14px;
+}
+
+.goal-option {
+  min-height: 64px;
+  grid-template-columns: 62px 1fr;
+  padding: 10px 20px;
+}
+
+.goal-option img {
+  width: 42px;
+  height: 42px;
+}
+
+.goal-option span {
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.goals-next-button {
+  flex-shrink: 0;
+  width: auto;
+  margin-top: 16px;
+}
+
+/* Final onboarding confirmation screen after the user has chosen starter goals. */
+.complete-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 218px 34px 40px;
+  background: var(--bg-cream);
+  text-align: center;
+}
+
+.complete-bird-image {
+  display: block;
+  width: 260px;
+  max-width: 100%;
+  margin-bottom: 32px;
+}
+
+.complete-screen h1 {
+  max-width: 320px;
+  margin: 0 0 22px;
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.complete-screen p {
+  max-width: 320px;
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.complete-start-button {
+  margin-top: auto;
+  min-height: 70px;
+  font-size: 1.45rem;
+  background: #75b85b;
 }
