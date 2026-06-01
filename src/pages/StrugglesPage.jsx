@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router";
+import BackLink from "../components/BackLink";
 import StruggleOption from "../components/StruggleOption";
 import { birdProfiles } from "../data/birdProfiles";
 import sleepIcon from "../../Images/Sleep icon.svg";
@@ -34,9 +35,7 @@ export default function StrugglesPage() {
   return (
     <main className="auth-page">
       <section className="auth-shell struggles-screen">
-        <Link className="bird-back-link" to={`/bird-name/${bird}`} aria-label="Go back">
-          ←
-        </Link>
+        <BackLink to={`/bird-name/${bird}`} />
 
         <div className="struggles-copy">
           <h1>What do you struggle with?</h1>

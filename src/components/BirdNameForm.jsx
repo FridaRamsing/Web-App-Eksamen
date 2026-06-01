@@ -1,11 +1,10 @@
 import { Link } from "react-router";
+import BackLink from "./BackLink";
 
 export default function BirdNameForm({ birdName, image, alt, sound }) {
   return (
     <section className="auth-shell bird-name-screen">
-      <Link className="bird-back-link" to="/choose-bird" aria-label="Go back">
-        ←
-      </Link>
+      <BackLink to="/choose-bird" />
 
       <h1 className="bird-name-title">I have a name!</h1>
 

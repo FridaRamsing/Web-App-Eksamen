@@ -13,6 +13,11 @@ import StrugglesPage from "./pages/StrugglesPage";
 import GoalCountPage from "./pages/GoalCountPage";
 import GoalsPage from "./pages/GoalsPage";
 import OnboardingCompletePage from "./pages/OnboardingCompletePage";
+import NotificationsPage from "./pages/NotificationsPage";
+import ProfilePage from "./pages/ProfilePage";
+import EditBirdPage from "./pages/EditBirdPage";
+import HealthPage from "./pages/HealthPage";
+import HealthDataPage from "./pages/HealthDataPage";
 
 export default function App() {
   return (
@@ -29,6 +34,11 @@ export default function App() {
       <Route path="/goal-count/:bird" element={<GoalCountPage />} />
       <Route path="/goals/:bird" element={<GoalsPage />} />
       <Route path="/onboarding-complete/:bird" element={<OnboardingCompletePage />} />
+      <Route path="/notifications" element={<NotificationsPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/edit-bird" element={<EditBirdPage />} />
+      <Route path="/health" element={<HealthPage />} />
+      <Route path="/health-data" element={<HealthDataPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

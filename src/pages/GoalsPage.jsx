@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router";
+import BackLink from "../components/BackLink";
 import StruggleOption from "../components/StruggleOption";
 import { birdProfiles } from "../data/birdProfiles";
 import penIcon from "../../Images/Pen Icons.svg";
@@ -36,9 +37,7 @@ export default function GoalsPage() {
   return (
     <main className="auth-page">
       <section className="auth-shell struggles-screen goals-screen">
-        <Link className="bird-back-link" to={`/goal-count/${bird}`} aria-label="Go back">
-          ←
-        </Link>
+        <BackLink to={`/goal-count/${bird}`} />
 
         <div className="goals-scroll-area">
           <div className="struggles-copy goals-copy">

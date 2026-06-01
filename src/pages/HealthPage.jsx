@@ -1,50 +1,32 @@
-
 import { useState } from "react";
 import { Link } from "react-router";
 import FriendsOverlay from "../components/FriendsOverlay";
 import PhoneStatusBar from "../components/PhoneStatusBar";
-import beachBackground from "../../Images/beach.svg";
 import menuIcon from "../../Images/Menu.svg";
 import bellIcon from "../../Images/bell.svg";
-import calendarIcon from "../../Images/calender.svg";
+import hummingbirdConfusedImage from "../../Images/hummingbird confused.svg";
+import barbellIcon from "../../Images/mingcute_barbell-line.svg";
+import addIcon from "../../Images/add.svg";
 import settingsIcon from "../../Images/settings.svg";
 import widgetIcon from "../../Images/widget.svg";
-import clockIcon from "../../Images/Clock Icons.svg";
-import toothbrushIcon from "../../Images/Toothbrush Icons.svg";
-import chickenIcon from "../../Images/Chicken Icons.svg";
-import checkIcon from "../../Images/pencil.svg";
 import nestIcon from "../../Images/nest.svg";
 import shoeIcon from "../../Images/shoe.svg";
 import friendsIcon from "../../Images/friends.svg";
 import hummingbirdIcon from "../../Images/hummingbird profile.svg";
-import hummingbirdImage from "../../Images/hummingbird normal.svg";
 
-const todaysGoals = [
-  { title: "wake up by 7am", icon: clockIcon },
-  { title: "Brush teeth", icon: toothbrushIcon },
-  { title: "Just be", icon: chickenIcon },
+const connectOptions = [
+  { label: "Add your health app", to: "/health-data" },
+  { label: "Add a smartwatch", to: "/health-data" },
 ];
 
 const navItems = [
-  { label: "Home", icon: nestIcon, active: true },
-  { label: "Health", icon: shoeIcon, to: "/health" },
+  { label: "Home", icon: nestIcon, to: "/Home" },
+  { label: "Health", icon: shoeIcon, active: true },
   { label: "Friends", icon: friendsIcon },
   { label: "Honey", icon: hummingbirdIcon, to: "/profile" },
 ];
 
-function GoalCard({ title, icon }) {
-  return (
-    <article className="home-goal-card">
-      <img src={icon} alt="" />
-      <p>{title}</p>
-      <button type="button" aria-label={`Complete ${title}`}>
-        <img src={checkIcon} alt="" />
-      </button>
-    </article>
-  );
-}
-
-function BottomNavItem({ label, icon, active, to, onClick }) {
+function HealthBottomNavItem({ label, icon, to, active, onClick }) {
   const className = `home-nav-item ${active ? "home-nav-item-active" : ""}`;
   const content = (
     <>
@@ -68,17 +50,17 @@ function BottomNavItem({ label, icon, active, to, onClick }) {
   );
 }
 
-export default function HomePage() {
+export default function HealthPage() {
   const [isFriendsOpen, setIsFriendsOpen] = useState(false);
 
   return (
     <main className="auth-page">
-      <section className="auth-shell home-screen">
-        <img className="home-beach-bg" src={beachBackground} alt="" />
+      <section className="auth-shell health-screen">
+        <div className="health-gym-scene" aria-hidden="true" />
 
-        <PhoneStatusBar className="home-status-bar" />
+        <PhoneStatusBar className="health-status-bar" />
 
-        <header className="home-top-actions">
+        <header className="home-top-actions health-top-actions">
           <button type="button" aria-label="Open menu">
             <img src={menuIcon} alt="" />
           </button>
@@ -87,39 +69,45 @@ export default function HomePage() {
           </Link>
         </header>
 
-        <img className="home-bird" src={hummingbirdImage} alt="Hummingbird flying over the beach" />
+        <img className="health-bird" src={hummingbirdConfusedImage} alt="Honey the confused hummingbird in the gym" />
 
-        <section className="home-goals-panel">
-          <div className="home-goals-header">
+        <section className="health-panel">
+          <div className="health-header">
             <div>
-              <img src={calendarIcon} alt="" />
-              <h1>Goals for today!</h1>
+              <img src={barbellIcon} alt="" />
+              <h1>Health tracker</h1>
             </div>
             <div className="home-goals-tools">
-              <button type="button" aria-label="Filter goals">
+              <button type="button" aria-label="Filter health tracker">
                 <img src={settingsIcon} alt="" />
               </button>
-              <button type="button" aria-label="Add goal">
+              <button type="button" aria-label="Add health tracker item">
                 <img src={widgetIcon} alt="" />
               </button>
             </div>
           </div>
 
-          <div className="home-period-heading">
-            <span>Morning</span>
-            <hr />
-          </div>
-
-          <div className="home-goal-list">
-            {todaysGoals.map((goal) => (
-              <GoalCard key={goal.title} title={goal.title} icon={goal.icon} />
+          <div className="health-connect-list">
+            {connectOptions.map((option) => (
+              <Link className="health-connect-card" to={option.to} key={option.label}>
+                <img src={addIcon} alt="" />
+                <span>{option.label}</span>
+              </Link>
             ))}
           </div>
+
+          <p className="health-empty-note">
+            There is no date yet. Please connect to your health app and/or a smart watch to get the most out of this
+            function
+          </p>
         </section>
 
-        <nav className={`home-bottom-nav ${isFriendsOpen ? "friends-bottom-nav" : ""}`} aria-label="Main navigation">
+        <nav
+          className={`home-bottom-nav health-bottom-nav ${isFriendsOpen ? "friends-bottom-nav" : ""}`}
+          aria-label="Main navigation"
+        >
           {navItems.map((item) => (
-            <BottomNavItem
+            <HealthBottomNavItem
               key={item.label}
               {...item}
               active={item.label === "Friends" ? isFriendsOpen : item.active && !isFriendsOpen}

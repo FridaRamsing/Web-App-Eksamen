@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router";
+import BackLink from "../components/BackLink";
 import StruggleOption from "../components/StruggleOption";
 import { birdProfiles } from "../data/birdProfiles";
 import sleepIcon from "../../Images/Sleep icon.svg";
@@ -24,9 +25,7 @@ export default function GoalCountPage() {
   return (
     <main className="auth-page">
       <section className="auth-shell struggles-screen goal-count-screen">
-        <Link className="bird-back-link" to={`/struggles/${bird}`} aria-label="Go back">
-          ←
-        </Link>
+        <BackLink to={`/struggles/${bird}`} />
 
         <div className="struggles-copy goal-count-copy">
           <h1>How many goals do you see fit?</h1>
