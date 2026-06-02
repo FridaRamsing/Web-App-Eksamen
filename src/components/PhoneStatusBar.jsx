@@ -1,4 +1,4 @@
-import statusIcons from "../../Images/iPhone-status-bar(upper)/Status Icons.svg";
+import statusIcons from "../../Images/Status Icons.svg";
 
 export default function PhoneStatusBar({ className = "" }) {
   return (

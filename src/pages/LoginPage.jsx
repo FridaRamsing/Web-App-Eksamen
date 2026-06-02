@@ -1,11 +1,36 @@
 
-import { Link } from "react-router";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { signInWithEmail } from "../lib/supabaseFetch";
 import loginPageImage from "../../Images/Login page.svg";
 import GoogleLogo from "../../Images/google.svg";
 import FacebookLogo from "../../Images/facebook.svg";
 import AppleLogo from "../../Images/apple.svg";
 
-export default function LoginPage () {
+export default function LoginPage() {
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    async function handleLogin(event) {
+      event.preventDefault();
+
+      setIsSubmitting(true);
+      setErrorMessage("");
+
+      try {
+        await signInWithEmail(email.trim(), password);
+        navigate("/Home");
+      } catch (error) {
+        console.error("Could not log in with Supabase:", error);
+        setErrorMessage(error.message || "Login failed. Please check your email and password.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
+
     return (
       <main className="auth-page">
         <section className="auth-shell">
@@ -20,21 +45,29 @@ export default function LoginPage () {
           <div className="login-form-section">
             <h1 className="login-title">Welcome Back</h1>
 
-            <form className="auth-form">
+            <form className="auth-form" onSubmit={handleLogin}>
               <input
                 className="auth-input"
                 type="email"
                 placeholder="Enter Email..."
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
               />
 
               <input
                 className="auth-input"
                 type="password"
                 placeholder="Enter Password..."
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
               />
 
-              <button className="auth-button" type="submit">
-                Enter
+              {errorMessage && <p className="auth-error-text">{errorMessage}</p>}
+
+              <button className="auth-button" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Logging in..." : "Enter"}
               </button>
             </form>
             <div className="auth-divider">

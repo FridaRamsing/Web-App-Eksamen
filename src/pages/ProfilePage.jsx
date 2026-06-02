@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import BackLink from "../components/BackLink";
 import FriendsOverlay from "../components/FriendsOverlay";
 import PhoneStatusBar from "../components/PhoneStatusBar";
-import hummingbirdProfileImage from "../../Images/hummingbird myprofile.svg";
+import { getCurrentBirdProfile, getSavedHumanName } from "../data/birdProfiles";
 import pencilProfileIcon from "../../Images/pencilprofile.svg";
 import copyIcon from "../../Images/copy.svg";
 import weightIcon from "../../Images/weight.svg";
@@ -14,13 +14,6 @@ import smallBandIcon from "../../Images/small band.svg";
 import nestIcon from "../../Images/nest.svg";
 import shoeIcon from "../../Images/shoe.svg";
 import friendsIcon from "../../Images/friends.svg";
-import hummingbirdIcon from "../../Images/hummingbird profile.svg";
-
-const profileStats = [
-  { label: "AGE", value: "1 day" },
-  { label: "FRIENDSHIP", value: "New friend" },
-  { label: "HUMAN", value: "Ella" },
-];
 
 const measurements = [
   { icon: weightIcon, value: "12g" },
@@ -30,13 +23,6 @@ const measurements = [
 
 const weekdays = ["M", "T", "W", "T", "F", "S", "S"];
 const streakCells = Array.from({ length: 35 }, (_, index) => index);
-
-const navItems = [
-  { label: "Home", icon: nestIcon, to: "/Home" },
-  { label: "Health", icon: shoeIcon, to: "/health" },
-  { label: "Friends", icon: friendsIcon },
-  { label: "Arlo", icon: hummingbirdIcon, active: true },
-];
 
 function ProfileBottomNavItem({ label, icon, to, active, onClick }) {
   const className = `home-nav-item ${active ? "home-nav-item-active" : ""}`;
@@ -64,6 +50,19 @@ function ProfileBottomNavItem({ label, icon, to, active, onClick }) {
 
 export default function ProfilePage() {
   const [isFriendsOpen, setIsFriendsOpen] = useState(false);
+  const currentBird = getCurrentBirdProfile();
+  const humanName = getSavedHumanName();
+  const profileStats = [
+    { label: "AGE", value: "1 day" },
+    { label: "FRIENDSHIP", value: "New friend" },
+    { label: "HUMAN", value: humanName },
+  ];
+  const navItems = [
+    { label: "Home", icon: nestIcon, to: "/Home" },
+    { label: "Health", icon: shoeIcon, to: "/health" },
+    { label: "Friends", icon: friendsIcon },
+    { label: currentBird.displayName, icon: currentBird.navIcon, active: true },
+  ];
 
   return (
     <main className="auth-page">
@@ -79,10 +78,14 @@ export default function ProfilePage() {
             </Link>
 
             <div className="profile-intro">
-              <img className="profile-bird-image" src={hummingbirdProfileImage} alt="Arlo the hummingbird" />
+              <img
+                className={`profile-bird-image profile-bird-image-${currentBird.name}`}
+                src={currentBird.profileImage}
+                alt={currentBird.profileAlt}
+              />
 
               <div className="profile-name-block">
-                <h1>Arlo</h1>
+                <h1>{currentBird.displayName}</h1>
                 <p>Friendship code</p>
                 <div className="profile-code-row">
                   <span>V10YOURMAM</span>

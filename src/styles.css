@@ -264,6 +264,14 @@ text-shadow: none; /*might add later if time*/
   text-decoration: underline;
 }
 
+.auth-error-text {
+  margin: -12px 0 16px;
+  color: #b3392f;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 /* Tightens the sign-up form so it fits the phone frame like the login screen. */
 .signup-form-section {
   padding-top: 20px;
@@ -668,6 +676,16 @@ text-shadow: none; /*might add later if time*/
   left: 50%;
   width: 190px;
   transform: translateX(-50%);
+}
+
+.home-bird-eagle {
+  top: 176px;
+  width: 126px;
+}
+
+.home-bird-duck {
+  top: 176px;
+  width: 132px;
 }
 
 .home-goals-panel {
@@ -1081,6 +1099,12 @@ text-shadow: none; /*might add later if time*/
   border-radius: 16px;
 }
 
+.profile-bird-image-eagle,
+.profile-bird-image-duck {
+  width: 98px;
+  justify-self: center;
+}
+
 .profile-name-block h1 {
   margin: 0 0 18px;
   color: #976f1e;
@@ -1293,6 +1317,16 @@ text-shadow: none; /*might add later if time*/
   transform: translateX(-50%);
 }
 
+.health-bird-eagle {
+  top: 122px;
+  width: 114px;
+}
+
+.health-bird-duck {
+  top: 132px;
+  width: 124px;
+}
+
 .health-panel {
   position: absolute;
   z-index: 2;
@@ -1308,26 +1342,27 @@ text-shadow: none; /*might add later if time*/
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 14px;
   margin-bottom: 26px;
 }
 
 .health-header div {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
 }
 
 .health-header h1 {
   margin: 0;
-  font-size: 1.24rem;
+  font-size: 1.12rem;
   line-height: 1;
   white-space: nowrap;
 }
 
 .health-header img,
 .health-connect-card img {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
 }
 
@@ -1374,10 +1409,20 @@ text-shadow: none; /*might add later if time*/
   transform: translateX(-50%);
 }
 
+.health-data-bird-eagle {
+  top: 158px;
+  width: 166px;
+}
+
+.health-data-bird-duck {
+  top: 154px;
+  width: 158px;
+}
+
 .health-data-panel {
   top: 376px;
   min-height: 0;
-  padding: 28px 22px 30px;
+  padding: 28px 18px 126px;
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: none;
@@ -1390,24 +1435,24 @@ text-shadow: none; /*might add later if time*/
 .health-metric-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 14px;
+  gap: 10px;
   align-items: start;
 }
 
 .health-metric-column {
   display: grid;
-  gap: 16px;
+  gap: 12px;
   min-width: 0;
 }
 
 .health-metric-card {
   position: relative;
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
-  gap: 8px;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 7px;
   min-width: 0;
-  min-height: 82px;
-  padding: 16px 26px 14px 14px;
+  min-height: 80px;
+  padding: 15px 22px 14px 12px;
   border-radius: 18px;
   background: #ffffff;
   box-shadow: 5px 7px 0 rgba(123, 91, 42, 0.28);
@@ -1415,12 +1460,12 @@ text-shadow: none; /*might add later if time*/
 }
 
 .health-metric-card-large {
-  min-height: 148px;
+  min-height: 138px;
 }
 
 .health-metric-card img {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
 }
 
@@ -1430,20 +1475,20 @@ text-shadow: none; /*might add later if time*/
 }
 
 .health-metric-card h2 {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 500;
   line-height: 1.25;
 }
 
 .health-metric-card p {
   margin-top: 8px;
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   line-height: 1;
 }
 
 .health-metric-card-large p {
-  margin-top: 22px;
-  font-size: 2.05rem;
+  margin-top: 18px;
+  font-size: 1.85rem;
 }
 
 .health-metric-card button {

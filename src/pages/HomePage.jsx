@@ -1,8 +1,10 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import FriendsOverlay from "../components/FriendsOverlay";
 import PhoneStatusBar from "../components/PhoneStatusBar";
+import { getCurrentBirdProfile } from "../data/birdProfiles";
+import { fetchSupabaseRows, hasSupabaseConfig } from "../lib/supabaseFetch";
 import beachBackground from "../../Images/beach.svg";
 import menuIcon from "../../Images/Menu.svg";
 import bellIcon from "../../Images/bell.svg";
@@ -16,20 +18,17 @@ import checkIcon from "../../Images/pencil.svg";
 import nestIcon from "../../Images/nest.svg";
 import shoeIcon from "../../Images/shoe.svg";
 import friendsIcon from "../../Images/friends.svg";
-import hummingbirdIcon from "../../Images/hummingbird profile.svg";
-import hummingbirdImage from "../../Images/hummingbird normal.svg";
 
-const todaysGoals = [
-  { title: "wake up by 7am", icon: clockIcon },
-  { title: "Brush teeth", icon: toothbrushIcon },
-  { title: "Just be", icon: chickenIcon },
-];
+const goalIcons = {
+  clock: clockIcon,
+  toothbrush: toothbrushIcon,
+  chicken: chickenIcon,
+};
 
-const navItems = [
-  { label: "Home", icon: nestIcon, active: true },
-  { label: "Health", icon: shoeIcon, to: "/health" },
-  { label: "Friends", icon: friendsIcon },
-  { label: "Honey", icon: hummingbirdIcon, to: "/profile" },
+const fallbackGoals = [
+  { id: "local-clock", title: "wake up by 7am", iconKey: "clock" },
+  { id: "local-toothbrush", title: "Brush teeth", iconKey: "toothbrush" },
+  { id: "local-chicken", title: "Just be", iconKey: "chicken" },
 ];
 
 function GoalCard({ title, icon }) {
@@ -70,6 +69,38 @@ function BottomNavItem({ label, icon, active, to, onClick }) {
 
 export default function HomePage() {
   const [isFriendsOpen, setIsFriendsOpen] = useState(false);
+  const [todaysGoals, setTodaysGoals] = useState(fallbackGoals);
+  const currentBird = getCurrentBirdProfile();
+  const navItems = [
+    { label: "Home", icon: nestIcon, active: true },
+    { label: "Health", icon: shoeIcon, to: "/health" },
+    { label: "Friends", icon: friendsIcon },
+    { label: currentBird.displayName, icon: currentBird.navIcon, to: "/profile" },
+  ];
+
+  useEffect(() => {
+    if (!hasSupabaseConfig()) return;
+
+    async function loadGoals() {
+      try {
+        const goals = await fetchSupabaseRows("select=id,title,icon_key,period,completed&order=id.asc");
+
+        if (goals.length > 0) {
+          setTodaysGoals(
+            goals.map((goal) => ({
+              id: goal.id,
+              title: goal.title,
+              iconKey: goal.icon_key,
+            }))
+          );
+        }
+      } catch (error) {
+        console.warn("Using local goals because Supabase could not load goals:", error);
+      }
+    }
+
+    loadGoals();
+  }, []);
 
   return (
     <main className="auth-page">
@@ -87,7 +118,7 @@ export default function HomePage() {
           </Link>
         </header>
 
-        <img className="home-bird" src={hummingbirdImage} alt="Hummingbird flying over the beach" />
+        <img className={`home-bird home-bird-${currentBird.name}`} src={currentBird.homeImage} alt={currentBird.homeAlt} />
 
         <section className="home-goals-panel">
           <div className="home-goals-header">
@@ -112,7 +143,7 @@ export default function HomePage() {
 
           <div className="home-goal-list">
             {todaysGoals.map((goal) => (
-              <GoalCard key={goal.title} title={goal.title} icon={goal.icon} />
+              <GoalCard key={goal.id} title={goal.title} icon={goalIcons[goal.iconKey] || chickenIcon} />
             ))}
           </div>
         </section>

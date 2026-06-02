@@ -43,6 +43,11 @@ jobs:
 
       # Build React app for production
       - name: Build
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_USER_SETTINGS_URL: ${{ vars.VITE_SUPABASE_USER_SETTINGS_URL }}
+          VITE_SUPABASE_AUTH_URL: ${{ vars.VITE_SUPABASE_AUTH_URL }}
+          VITE_SUPABASE_APIKEY: ${{ vars.VITE_SUPABASE_APIKEY }}
         run: npm run build
 
       # Copy index.html to 404.html for SPA routing

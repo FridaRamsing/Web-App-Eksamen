@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router";
 import FriendsOverlay from "../components/FriendsOverlay";
 import PhoneStatusBar from "../components/PhoneStatusBar";
+import { getCurrentBirdProfile } from "../data/birdProfiles";
 import menuIcon from "../../Images/Menu.svg";
 import bellIcon from "../../Images/bell.svg";
-import hummingbirdStrongImage from "../../Images/Hummingbird strong.svg";
 import barbellIcon from "../../Images/mingcute_barbell-line.svg";
 import settingsIcon from "../../Images/settings.svg";
 import widgetIcon from "../../Images/widget.svg";
@@ -16,14 +16,6 @@ import heartIcon from "../../Images/Heart icon.svg";
 import nestIcon from "../../Images/nest.svg";
 import shoeIcon from "../../Images/shoe.svg";
 import friendsIcon from "../../Images/friends.svg";
-import hummingbirdIcon from "../../Images/hummingbird profile.svg";
-
-const navItems = [
-  { label: "Home", icon: nestIcon, to: "/Home" },
-  { label: "Health", icon: shoeIcon, active: true },
-  { label: "Friends", icon: friendsIcon },
-  { label: "Honey", icon: hummingbirdIcon, to: "/profile" },
-];
 
 const healthCardColumns = [
   [
@@ -82,6 +74,13 @@ function HealthMetricCard({ title, value, icon, size }) {
 
 export default function HealthDataPage() {
   const [isFriendsOpen, setIsFriendsOpen] = useState(false);
+  const currentBird = getCurrentBirdProfile();
+  const navItems = [
+    { label: "Home", icon: nestIcon, to: "/Home" },
+    { label: "Health", icon: shoeIcon, active: true },
+    { label: "Friends", icon: friendsIcon },
+    { label: currentBird.displayName, icon: currentBird.navIcon, to: "/profile" },
+  ];
 
   return (
     <main className="auth-page">
@@ -99,7 +98,11 @@ export default function HealthDataPage() {
           </Link>
         </header>
 
-        <img className="health-data-bird" src={hummingbirdStrongImage} alt="Honey the hummingbird exercising" />
+        <img
+          className={`health-data-bird health-data-bird-${currentBird.name}`}
+          src={currentBird.strongImage}
+          alt={currentBird.strongAlt}
+        />
 
         <section className="health-panel health-data-panel">
           <div className="health-header">
