@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import FriendsOverlay from "../components/FriendsOverlay";
 import PhoneStatusBar from "../components/PhoneStatusBar";
-import { getCurrentBirdProfile } from "../data/birdProfiles";
+import { getCurrentBirdProfile, getSavedBirdName } from "../data/birdProfiles";
 import menuIcon from "../../Images/Menu.svg";
 import bellIcon from "../../Images/bell.svg";
 import barbellIcon from "../../Images/mingcute_barbell-line.svg";
@@ -75,11 +75,12 @@ function HealthMetricCard({ title, value, icon, size }) {
 export default function HealthDataPage() {
   const [isFriendsOpen, setIsFriendsOpen] = useState(false);
   const currentBird = getCurrentBirdProfile();
+  const birdDisplayName = getSavedBirdName(currentBird.displayName);
   const navItems = [
     { label: "Home", icon: nestIcon, to: "/Home" },
     { label: "Health", icon: shoeIcon, active: true },
     { label: "Friends", icon: friendsIcon },
-    { label: currentBird.displayName, icon: currentBird.navIcon, to: "/profile" },
+    { label: birdDisplayName, icon: currentBird.navIcon, to: "/profile" },
   ];
 
   return (

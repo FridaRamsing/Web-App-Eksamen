@@ -21,6 +21,7 @@ import hummingbirdProfileIcon from "../../Images/hummingbird profile.svg";
 import duckProfileIcon from "../../Images/duck profile.svg";
 
 const SELECTED_BIRD_KEY = "fjeraSelectedBird";
+const BIRD_NAME_KEY = "fjeraBirdName";
 const HUMAN_NAME_KEY = "fjeraHumanName";
 
 export const birdProfiles = {
@@ -95,13 +96,13 @@ export const birdProfiles = {
   },
 };
 
-export function saveSelectedBirdProfile(birdType, humanName) {
+export function saveSelectedBirdProfile(birdType, birdName) {
   if (typeof window === "undefined") return;
 
   localStorage.setItem(SELECTED_BIRD_KEY, birdType);
 
-  if (humanName) {
-    localStorage.setItem(HUMAN_NAME_KEY, humanName);
+  if (birdName) {
+    localStorage.setItem(BIRD_NAME_KEY, birdName);
   }
 }
 
@@ -118,4 +119,10 @@ export function getSavedHumanName() {
   if (typeof window === "undefined") return "Ella";
 
   return localStorage.getItem(HUMAN_NAME_KEY) || "Ella";
+}
+
+export function getSavedBirdName(fallbackName = "Honey") {
+  if (typeof window === "undefined") return fallbackName;
+
+  return localStorage.getItem(BIRD_NAME_KEY) || localStorage.getItem(HUMAN_NAME_KEY) || fallbackName;
 }

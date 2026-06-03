@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import BackLink from "../components/BackLink";
 import FriendsOverlay from "../components/FriendsOverlay";
 import PhoneStatusBar from "../components/PhoneStatusBar";
-import { getCurrentBirdProfile, getSavedHumanName } from "../data/birdProfiles";
+import { getCurrentBirdProfile, getSavedBirdName, getSavedHumanName } from "../data/birdProfiles";
 import pencilProfileIcon from "../../Images/pencilprofile.svg";
 import copyIcon from "../../Images/copy.svg";
 import weightIcon from "../../Images/weight.svg";
@@ -51,6 +51,7 @@ function ProfileBottomNavItem({ label, icon, to, active, onClick }) {
 export default function ProfilePage() {
   const [isFriendsOpen, setIsFriendsOpen] = useState(false);
   const currentBird = getCurrentBirdProfile();
+  const birdDisplayName = getSavedBirdName(currentBird.displayName);
   const humanName = getSavedHumanName();
   const profileStats = [
     { label: "AGE", value: "1 day" },
@@ -61,7 +62,7 @@ export default function ProfilePage() {
     { label: "Home", icon: nestIcon, to: "/Home" },
     { label: "Health", icon: shoeIcon, to: "/health" },
     { label: "Friends", icon: friendsIcon },
-    { label: currentBird.displayName, icon: currentBird.navIcon, active: true },
+    { label: birdDisplayName, icon: currentBird.navIcon, active: true },
   ];
 
   return (
@@ -85,7 +86,7 @@ export default function ProfilePage() {
               />
 
               <div className="profile-name-block">
-                <h1>{currentBird.displayName}</h1>
+                <h1>{birdDisplayName}</h1>
                 <p>Friendship code</p>
                 <div className="profile-code-row">
                   <span>V10YOURMAM</span>

@@ -679,13 +679,13 @@ text-shadow: none; /*might add later if time*/
 }
 
 .home-bird-eagle {
-  top: 176px;
-  width: 126px;
+  top: 170px;
+  width: 140px;
 }
 
 .home-bird-duck {
-  top: 176px;
-  width: 132px;
+  top: 170px;
+  width: 148px;
 }
 
 .home-goals-panel {
@@ -1101,7 +1101,7 @@ text-shadow: none; /*might add later if time*/
 
 .profile-bird-image-eagle,
 .profile-bird-image-duck {
-  width: 98px;
+  width: 106px;
   justify-self: center;
 }
 
@@ -1318,13 +1318,13 @@ text-shadow: none; /*might add later if time*/
 }
 
 .health-bird-eagle {
-  top: 122px;
-  width: 114px;
+  top: 118px;
+  width: 128px;
 }
 
 .health-bird-duck {
-  top: 132px;
-  width: 124px;
+  top: 126px;
+  width: 138px;
 }
 
 .health-panel {
@@ -1410,13 +1410,13 @@ text-shadow: none; /*might add later if time*/
 }
 
 .health-data-bird-eagle {
-  top: 158px;
-  width: 166px;
+  top: 150px;
+  width: 184px;
 }
 
 .health-data-bird-duck {
-  top: 154px;
-  width: 158px;
+  top: 148px;
+  width: 174px;
 }
 
 .health-data-panel {

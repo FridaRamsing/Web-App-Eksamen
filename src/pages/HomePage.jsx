@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import FriendsOverlay from "../components/FriendsOverlay";
 import PhoneStatusBar from "../components/PhoneStatusBar";
-import { getCurrentBirdProfile } from "../data/birdProfiles";
+import { getCurrentBirdProfile, getSavedBirdName } from "../data/birdProfiles";
 import { fetchSupabaseRows, hasSupabaseConfig } from "../lib/supabaseFetch";
 import beachBackground from "../../Images/beach.svg";
 import menuIcon from "../../Images/Menu.svg";
@@ -71,11 +71,12 @@ export default function HomePage() {
   const [isFriendsOpen, setIsFriendsOpen] = useState(false);
   const [todaysGoals, setTodaysGoals] = useState(fallbackGoals);
   const currentBird = getCurrentBirdProfile();
+  const birdDisplayName = getSavedBirdName(currentBird.displayName);
   const navItems = [
     { label: "Home", icon: nestIcon, active: true },
     { label: "Health", icon: shoeIcon, to: "/health" },
     { label: "Friends", icon: friendsIcon },
-    { label: currentBird.displayName, icon: currentBird.navIcon, to: "/profile" },
+    { label: birdDisplayName, icon: currentBird.navIcon, to: "/profile" },
   ];
 
   useEffect(() => {
