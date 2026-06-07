@@ -1,6 +1,6 @@
 {
   "name": "web-app-eksamen",
-  "base": "/web-app-eksamen/",
+  "base": "/Web-App-Eksamen/",
   "private": true,
   "version": "1.0.0",
   "type": "module",
