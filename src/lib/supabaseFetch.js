@@ -1,11 +1,14 @@
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-export const SUPABASE_USER_SETTINGS_URL = import.meta.env.VITE_SUPABASE_USER_SETTINGS_URL;
-const SUPABASE_AUTH_URL = import.meta.env.VITE_SUPABASE_AUTH_URL;
+const SUPABASE_PROJECT_URL = "https://rbpfibcjdqgsmmicyltz.supabase.co";
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || `${SUPABASE_PROJECT_URL}/rest/v1/goals`;
+export const SUPABASE_USER_SETTINGS_URL =
+  import.meta.env.VITE_SUPABASE_USER_SETTINGS_URL || `${SUPABASE_PROJECT_URL}/rest/v1/user_settings`;
+const SUPABASE_AUTH_URL = import.meta.env.VITE_SUPABASE_AUTH_URL || `${SUPABASE_PROJECT_URL}/auth/v1`;
 const AUTH_SESSION_KEY = "fjeraAuthSession";
 const SUPABASE_KEY =
   import.meta.env.VITE_SUPABASE_APIKEY ||
   import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
-  import.meta.env.VITE_SUPABASE_ANON_KEY;
+  import.meta.env.VITE_SUPABASE_ANON_KEY ||
+  "sb_publishable_KConyu4VkBTBDN8upDDItQ_8myrXZHd";
 
 function getSupabaseAuthUrl() {
   if (SUPABASE_AUTH_URL) {
